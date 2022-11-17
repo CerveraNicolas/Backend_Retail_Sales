@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
 
-namespace back_gestion_tareas.Context
+namespace Backend_Retails_Sales.Context
 {
     public class AppDBContext : DbContext
     {
