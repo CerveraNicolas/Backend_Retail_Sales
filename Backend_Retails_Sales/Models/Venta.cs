@@ -26,10 +26,6 @@ namespace Backend_Retails_Sales.Models
         public DateTime FechaRegistro { get; set; }
 
         [Required]
-        [DataType(DataType.Time)]
-        public TimeSpan HoraRegistro { get; set; }
-
-        [Required]
         public float Total { get; set; }
     }
 }
