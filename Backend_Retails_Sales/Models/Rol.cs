@@ -9,7 +9,7 @@ namespace Backend_Retails_Sales.Models
     public class Rol
     {
         [Key]
-        public int IdRol { get; set; }
+        public int Id { get; set; }
 
         [MaxLength(200)]
         public string? Descripcion { get; set; }

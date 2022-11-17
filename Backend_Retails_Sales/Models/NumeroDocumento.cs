@@ -9,7 +9,7 @@ namespace Backend_Retails_Sales.Models
     public class NumeroDocumento
     {
         [Key]
-        public int IdNumeroDocumento { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public DateTime? FechaRegistro { get; set; }

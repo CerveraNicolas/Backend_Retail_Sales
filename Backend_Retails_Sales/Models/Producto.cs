@@ -10,7 +10,7 @@ namespace Backend_Retails_Sales.Models
     public class Producto
     {
         [Key]
-        public int IdProducto { get; set; }
+        public int Id { get; set; }
 
         [MaxLength(200)]
         [Required]
