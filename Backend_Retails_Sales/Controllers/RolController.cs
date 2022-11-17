@@ -2,6 +2,7 @@
 using Backend_Retails_Sales.Models;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,11 +12,11 @@ namespace Backend_Retails_Sales.Controllers
     [EnableCors("All")]
     [Route("api/[controller]")]
     [ApiController]
-    public class UsuarioController : Controller
+    public class RolController : Controller
     {
         private readonly AppDBContext _context;
 
-        public UsuarioController(AppDBContext context)
+        public RolController(AppDBContext context)
         {
             this._context = context;
         }
@@ -26,7 +27,7 @@ namespace Backend_Retails_Sales.Controllers
         {
             try
             {
-                var _tarea = await _context.Usuarios.ToListAsync();
+                var _tarea = await _context.Roles.ToListAsync();
 
                 if (_tarea == null)
                 {
@@ -43,13 +44,13 @@ namespace Backend_Retails_Sales.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Usuario usuario)
+        public async Task<IActionResult> Post([FromBody] Rol rol)
         {
             try
             {
-                _context.Usuarios.Add(usuario);
+                _context.Roles.Add(rol);
                 await _context.SaveChangesAsync();
-                return Ok(new { message = "El usuario fué creado exitosamente." });
+                return Ok(new { message = "El rol fué creado exitosamente." });
             }
             catch (Exception ex)
             {
@@ -59,18 +60,18 @@ namespace Backend_Retails_Sales.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Post(int id, [FromBody] Usuario usuario)
+        public async Task<IActionResult> Post(int id, [FromBody] Rol rol)
         {
             try
             {
-                if (id != usuario.Id)
+                if (id != rol.Id)
                 {
                     return NotFound();
                 }
-                usuario.Status = !usuario.Status;
-                _context.Entry(usuario).State = EntityState.Modified;
+                rol.Status = !rol.Status;
+                _context.Entry(rol).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
-                return Ok(new { message = "El usuario fué editado exitosamente." });
+                return Ok(new { message = "El rol fué editado exitosamente." });
             }
             catch (Exception ex)
             {
@@ -84,15 +85,15 @@ namespace Backend_Retails_Sales.Controllers
         {
             try
             {
-                var usuario = await _context.Usuarios.FindAsync(id);
+                var producto = await _context.Productos.FindAsync(id);
 
-                if(usuario == null)
+                if(producto == null)
                 {
                     return NotFound();
                 }
-                _context.Usuarios.Remove(usuario);
+                _context.Productos.Remove(producto);
                 _context.SaveChanges();
-                return Ok(new {message="El usuario fué eliminidado exitosamente."});
+                return Ok(new {message="El rol fué eliminidado exitosamente."});
             }
             catch (Exception)
             {

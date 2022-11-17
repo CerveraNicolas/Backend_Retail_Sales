@@ -2,6 +2,7 @@
 using Backend_Retails_Sales.Models;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,11 +12,11 @@ namespace Backend_Retails_Sales.Controllers
     [EnableCors("All")]
     [Route("api/[controller]")]
     [ApiController]
-    public class UsuarioController : Controller
+    public class NumeroDocumentoController : Controller
     {
         private readonly AppDBContext _context;
 
-        public UsuarioController(AppDBContext context)
+        public NumeroDocumentoController(AppDBContext context)
         {
             this._context = context;
         }
@@ -26,7 +27,7 @@ namespace Backend_Retails_Sales.Controllers
         {
             try
             {
-                var _tarea = await _context.Usuarios.ToListAsync();
+                var _tarea = await _context.NumeroDocumentos.ToListAsync();
 
                 if (_tarea == null)
                 {
@@ -43,13 +44,13 @@ namespace Backend_Retails_Sales.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Usuario usuario)
+        public async Task<IActionResult> Post([FromBody] NumeroDocumento numdoc)
         {
             try
             {
-                _context.Usuarios.Add(usuario);
+                _context.NumeroDocumentos.Add(numdoc);
                 await _context.SaveChangesAsync();
-                return Ok(new { message = "El usuario fué creado exitosamente." });
+                return Ok(new { message = "El numero de documento fué creado exitosamente." });
             }
             catch (Exception ex)
             {
@@ -59,18 +60,17 @@ namespace Backend_Retails_Sales.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Post(int id, [FromBody] Usuario usuario)
+        public async Task<IActionResult> Post(int id, [FromBody] NumeroDocumento numdoc)
         {
             try
             {
-                if (id != usuario.Id)
+                if (id != numdoc.Id)
                 {
                     return NotFound();
                 }
-                usuario.Status = !usuario.Status;
-                _context.Entry(usuario).State = EntityState.Modified;
+                _context.Entry(numdoc).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
-                return Ok(new { message = "El usuario fué editado exitosamente." });
+                return Ok(new { message = "El numero de documento fué editado exitosamente." });
             }
             catch (Exception ex)
             {
@@ -84,15 +84,15 @@ namespace Backend_Retails_Sales.Controllers
         {
             try
             {
-                var usuario = await _context.Usuarios.FindAsync(id);
+                var numdoc = await _context.NumeroDocumentos.FindAsync(id);
 
-                if(usuario == null)
+                if(numdoc == null)
                 {
                     return NotFound();
                 }
-                _context.Usuarios.Remove(usuario);
+                _context.NumeroDocumentos.Remove(numdoc);
                 _context.SaveChanges();
-                return Ok(new {message="El usuario fué eliminidado exitosamente."});
+                return Ok(new {message="El numero de documento fué eliminidado exitosamente."});
             }
             catch (Exception)
             {

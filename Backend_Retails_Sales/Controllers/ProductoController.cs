@@ -11,11 +11,11 @@ namespace Backend_Retails_Sales.Controllers
     [EnableCors("All")]
     [Route("api/[controller]")]
     [ApiController]
-    public class UsuarioController : Controller
+    public class ProductoController : Controller
     {
         private readonly AppDBContext _context;
 
-        public UsuarioController(AppDBContext context)
+        public ProductoController(AppDBContext context)
         {
             this._context = context;
         }
@@ -26,7 +26,7 @@ namespace Backend_Retails_Sales.Controllers
         {
             try
             {
-                var _tarea = await _context.Usuarios.ToListAsync();
+                var _tarea = await _context.Productos.ToListAsync();
 
                 if (_tarea == null)
                 {
@@ -43,13 +43,13 @@ namespace Backend_Retails_Sales.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Usuario usuario)
+        public async Task<IActionResult> Post([FromBody] Producto producto)
         {
             try
             {
-                _context.Usuarios.Add(usuario);
+                _context.Productos.Add(producto);
                 await _context.SaveChangesAsync();
-                return Ok(new { message = "El usuario fué creado exitosamente." });
+                return Ok(new { message = "El producto fué creado exitosamente." });
             }
             catch (Exception ex)
             {
@@ -59,18 +59,18 @@ namespace Backend_Retails_Sales.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Post(int id, [FromBody] Usuario usuario)
+        public async Task<IActionResult> Post(int id, [FromBody] Producto producto)
         {
             try
             {
-                if (id != usuario.Id)
+                if (id != producto.Id)
                 {
                     return NotFound();
                 }
-                usuario.Status = !usuario.Status;
-                _context.Entry(usuario).State = EntityState.Modified;
+                producto.Status = !producto.Status;
+                _context.Entry(producto).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
-                return Ok(new { message = "El usuario fué editado exitosamente." });
+                return Ok(new { message = "El producto fué editado exitosamente." });
             }
             catch (Exception ex)
             {
@@ -84,15 +84,15 @@ namespace Backend_Retails_Sales.Controllers
         {
             try
             {
-                var usuario = await _context.Usuarios.FindAsync(id);
+                var producto = await _context.Productos.FindAsync(id);
 
-                if(usuario == null)
+                if(producto == null)
                 {
                     return NotFound();
                 }
-                _context.Usuarios.Remove(usuario);
+                _context.Productos.Remove(producto);
                 _context.SaveChanges();
-                return Ok(new {message="El usuario fué eliminidado exitosamente."});
+                return Ok(new {message="El producto fué eliminidado exitosamente."});
             }
             catch (Exception)
             {
