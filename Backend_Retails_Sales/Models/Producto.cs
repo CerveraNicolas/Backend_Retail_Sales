@@ -29,7 +29,7 @@ namespace Backend_Retails_Sales.Models
 
         [MaxLength(200)]
         [Required]
-        public bool EsActivo { get; set; }
+        public bool Status { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime FechaRegistro { get; set; }
@@ -38,5 +38,7 @@ namespace Backend_Retails_Sales.Models
         public TimeSpan HoraRegistro { get; set; }
 
         public Categoria CategoriaObject { get; set; }
+
+        public Usuario UsuarioObject { get; set; }  
     }
 }

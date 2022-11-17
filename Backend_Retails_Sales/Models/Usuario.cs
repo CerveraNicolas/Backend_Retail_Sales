@@ -8,7 +8,7 @@ namespace Backend_Retails_Sales.Models
     public class Usuario
     {
         [Key]
-        public int IdUsuario { get; set; }
+        public int Id { get; set; }
 
         [MaxLength(200)]
         [Required]
@@ -26,6 +26,8 @@ namespace Backend_Retails_Sales.Models
         public string Contrasenia { get; set; }
 
         [Required]
-        public bool EsActivo { get; set; }
+        public bool Status { get; set; }
+
+        public Rol RolObject { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace Backend_Retails_Sales.Models
         [MaxLength(200)]
         public string? Descripcion { get; set; }
 
-        public bool EsActivo { get; set; }
+        public bool Status { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime FechaRegistro { get; set; }    
