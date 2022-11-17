@@ -10,7 +10,13 @@ namespace Backend_Retails_Sales.Models
     {
         [Key]
         public int IdRol { get; set; }
-        public string Descripcion { get; set; }
-        public bool 
+
+        [MaxLength(200)]
+        public string? Descripcion { get; set; }
+
+        public bool EsActivo { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime FechaRegistro { get; set; }    
     }
 }

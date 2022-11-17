@@ -36,6 +36,5 @@ namespace Backend_Retails_Sales.Models
 
         [DataType(DataType.Time)]
         public TimeSpan HoraRegistro { get; set; }
-
     }
 }
