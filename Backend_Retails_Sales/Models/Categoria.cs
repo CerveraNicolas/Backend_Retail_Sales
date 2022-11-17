@@ -15,6 +15,7 @@ namespace Backend_Retails_Sales.Models
         [Key]
         public int Id { get; set; }
 
+        [MaxLength(300)]
         public string? Descripcion { get; set; }
 
         [Required]

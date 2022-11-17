@@ -17,7 +17,7 @@ namespace Backend_Retails_Sales.Models
         public string Nombre { get; set; }
 
         [MaxLength(200)]
-        public string Alias { get; set; }
+        public string? Alias { get; set; }
 
         [MaxLength(200)]
         [Required]
@@ -31,14 +31,14 @@ namespace Backend_Retails_Sales.Models
         [Required]
         public bool Status { get; set; }
 
-        [DataType(DataType.Date)]
+        [Required]
+        [DataType(DataType.DateTime)]
         public DateTime FechaRegistro { get; set; }
 
-        [DataType(DataType.Time)]
-        public TimeSpan HoraRegistro { get; set; }
-
+        [Required]
         public Categoria CategoriaObject { get; set; }
 
+        [Required]
         public Usuario UsuarioObject { get; set; }  
     }
 }

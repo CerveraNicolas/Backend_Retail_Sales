@@ -12,6 +12,7 @@ namespace Backend_Retails_Sales.Models
         public int Id { get; set; }
 
         [Required]
+        [DataType(DataType.DateTime)]
         public DateTime? FechaRegistro { get; set; }
     }
 }
