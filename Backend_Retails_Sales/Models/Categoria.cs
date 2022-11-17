@@ -18,7 +18,7 @@ namespace Backend_Retails_Sales.Models
         public string? Descripcion { get; set; }
 
         [Required]
-        public bool Activada { get; set; }
+        public bool Status { get; set; }
 
         [Required]
         [DataType(DataType.DateTime)]

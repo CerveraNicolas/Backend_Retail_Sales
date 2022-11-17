@@ -11,13 +11,14 @@ namespace Backend_Retails_Sales.Models
     [Table("DetalleVenta")]
     public class DetalleVenta
     {
+        [Key]
         public int Id { get; set; }
 
-        /*
-            TODO:
-            * IdVenta reference
-            * IdProducto reference
-        */
+        [Required]
+        public Venta VentaObject { get; set; }
+
+        [Required]
+        public Producto ProductObject { get; set; }
 
         [Required]
         public int Cantidad { get; set; }
